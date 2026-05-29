@@ -1,0 +1,42 @@
+data:
+  tickers: ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA"]
+  default_ticker: "AAPL"
+  start_date: "2018-01-01"
+  end_date: "2024-12-31"
+  test_split: 0.2
+  val_split: 0.1
+
+features:
+  window_sizes: [5, 10, 20, 50, 200]
+  rsi_period: 14
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  bb_period: 20
+  bb_std: 2
+
+models:
+  random_forest:
+    n_estimators: 200
+    max_depth: 10
+    min_samples_split: 5
+    random_state: 42
+  xgboost:
+    n_estimators: 200
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+  lstm:
+    sequence_length: 60
+    units: [128, 64]
+    dropout: 0.2
+    epochs: 50
+    batch_size: 32
+    learning_rate: 0.001
+
+paths:
+  data_dir: "data"
+  models_dir: "models_saved"
+  plots_dir: "plots"
