@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist/
+build/
+
+# Virtual environments
+.venv
+venv
+env
+
+# Notebooks (not needed at runtime)
+notebooks/
+
+# Tests (not needed at runtime)
+tests/
+
+# Large model files (mounted as volume instead)
+models_saved/
+
+# Raw data (mounted as volume instead)
+data/
+
+# IDE
+.vscode
+.idea
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+*.md
+LICENSE

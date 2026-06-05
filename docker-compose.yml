@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      target: runtime
+    image: stock-prediction-api:latest
+    container_name: stock-prediction-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount saved models at runtime so you don't bake them into the image
+      - ./models_saved:/app/models_saved:ro
+      # Mount data directory (read-only)
+      - ./data:/app/data:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
